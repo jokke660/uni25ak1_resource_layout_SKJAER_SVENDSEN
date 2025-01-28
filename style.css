@@ -24,3 +24,9 @@ li {
     background-color: var(--blue);
     margin-right: 10px;
 }
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background-color: var(--white);
+}

@@ -93,4 +93,18 @@ const resources = [
             },
         ]
     },
-]
+];
+
+console.log(resources)
+
+let resourceHTML = ""
+
+resources.map((resource, index) => resourceHTML +=
+`<article class="infocard">
+    <h2>${resource.category}</h2>
+    <p>${resource.text}</p>
+</article>`)
+
+document.getElementById("resources").innerHTML = resourceHTML
+
+
