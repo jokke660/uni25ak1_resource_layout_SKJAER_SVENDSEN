@@ -91,7 +91,7 @@ const resources = [
                 title: "Section.io: Getting started with Sanity CMS",
                 url: "https://www.section.io/engineering-education/getting-started-with-sanity-cms/"
             },
-        ]
+        ]                       
     },
 ];
 
@@ -99,11 +99,12 @@ console.log(resources)
 
 let resourceHTML = ""
 
-resources.map((resource, index) => resourceHTML +=
+resources.map((resource) => resourceHTML +=
 `<article class="infocard">
     <h2>${resource.category}</h2>
     <p>${resource.text}</p>
-</article>`)
+</article>`) //Henter informasjon fra arrayet og skriver det inn i HTML.
+
 
 document.getElementById("resources").innerHTML = resourceHTML
 
