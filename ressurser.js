@@ -95,17 +95,29 @@ const resources = [
     },
 ];
 
-console.log(resources)
+const categoryItems = document.querySelectorAll("#categoryList li"); // querySelectorAll henter elementene fra "categoryList" ID-en
 
-let resourceHTML = ""
-
-resources.map((resource) => resourceHTML +=
-`<article class="infocard">
-    <h2>${resource.category}</h2>
-    <p>${resource.text}</p>
-</article>`) //Henter informasjon fra arrayet og skriver det inn i HTML.
-
-
-document.getElementById("resources").innerHTML = resourceHTML
+categoryItems.forEach(item => {
+    item.addEventListener("click", () => {
+        const category = item.textContent.trim();  
+        const resource = resources.filter(resource => resource.category === category).map(resource => ({
+            category: resource.category,
+            text: resource.text,
+            sources: resource.sources
+        }))[0]; //[0] henter første element i listen (0 = 1. elementet i listen)
+        
+        if (resource) {
+            document.getElementById("resources").innerHTML =
+                //Html-artikkel
+                `<article class="infocard">
+                    <h2>${resource.category}</h2>
+                    <p>${resource.text}</p>
+                    <ul id="links">
+                        ${resource.sources.map(source => `<li><a href="${source.url}" target="_blank">${source.title}</a></li>`).join("")}
+                    </ul>
+                </article>`;
+        }
+    });
+});
 
 
