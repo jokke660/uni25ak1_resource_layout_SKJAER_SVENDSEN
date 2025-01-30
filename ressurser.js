@@ -98,12 +98,17 @@ const resources = [
 const categoryItems = document.querySelectorAll("#categoryList li"); // querySelectorAll henter elementene fra "categoryList" ID-en
 
 categoryItems.forEach(item => {
-    item.addEventListener("click", () => {
-        const category = item.textContent.trim();  
+    item.addEventListener("click", () => { //legger til event-listener "click" for hver kategori 
+        //fikk hjelp av ChatGPT med å highlighte den aktive kategorien
+        //denne koden fjerner og legger til klassen "active" til kategoriene, avhengig av hvilken jeg trykker på
+        categoryItems.forEach(item => item.classList.remove("active")); // fjerner active-klassen
+        item.classList.add("active"); //legger til active-klassen
+
+        const category = item.textContent.trim(); //fjerner whitespace rundt innholdet
         const resource = resources.filter(resource => resource.category === category).map(resource => ({
             category: resource.category,
             text: resource.text,
-            sources: resource.sources
+            sources: resource.sources //^filtrerer listen med innhold for å vise riktig innhold i forhold til kategorien som blir valgt
         }))[0]; //[0] henter første element i listen (0 = 1. elementet i listen)
         
         if (resource) {
